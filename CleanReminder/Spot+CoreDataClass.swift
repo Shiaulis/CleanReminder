@@ -13,4 +13,13 @@ import CoreData
 @objc(Spot)
 public class Spot: NSManagedObject {
 
+    var frequency: Frequency? {
+        get {
+            Frequency(frequencyDictionary: self.frequencyDictionary)
+        }
+        set {
+            self.frequencyDictionary = newValue?.frequencyDictionary
+        }
+    }
+
 }

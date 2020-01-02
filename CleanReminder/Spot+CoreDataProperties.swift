@@ -19,5 +19,6 @@ extension Spot {
 
     @NSManaged public var name: String?
     @NSManaged public var lastActionDate: Date?
+    @NSManaged var frequencyDictionary: NSObject?
 
 }
