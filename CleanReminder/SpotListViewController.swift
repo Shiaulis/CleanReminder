@@ -11,14 +11,14 @@ import CoreData
 
 class SpotListViewController: UITableViewController {
 
-    private var coreDataStack: CoreDataStack!
+    private var context: NSManagedObjectContext!
     private var spots: [Spot] = .init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.coreDataStack = CoreDataStack(modelName: "CleanReminder")
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.context = CoreDataStack(modelName: "CleanReminder").context
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         fetchSpots()
     }
@@ -35,7 +35,6 @@ class SpotListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.spots.count
     }
 
@@ -52,85 +51,82 @@ class SpotListViewController: UITableViewController {
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let spot = self.spots[indexPath.row]
-            self.coreDataStack.context.delete(spot)
-            try? self.coreDataStack.context.save()
-            self.spots.remove(at: indexPath.row)
+            self.context.tryPerform {
+                let spot = self.spots[indexPath.row]
+                self.context.delete(spot)
+                try? self.context.save()
+                self.spots.remove(at: indexPath.row)
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let destination = segue.destination as? UINavigationController,
+            let spotDetailViewController = destination.viewControllers.first as? SpotDetailViewController else { return }
+
+        spotDetailViewController.context = self.context
+
+        guard segue.identifier == "showDetail" else { return }
+
+        guard let selectedIndexPath = self.tableView.indexPathForSelectedRow,
+            let spot = self.spots[safe: selectedIndexPath.row] else {
+                assertionFailure("Selected spot is expected")
+                return
+        }
+
+        spotDetailViewController.spot = spot
     }
 
     @IBAction func unwind(for segue: UIStoryboardSegue) {
-        guard segue.identifier == "save",
-            let sourceViewController = segue.source as? NewSpotViewController,
-            let spotName = sourceViewController.spotName,
-            !spotName.isEmpty else { return }
+        guard segue.identifier == "back",
+            (segue.source as? SpotDetailViewController) != nil else {
+                return
+        }
 
-        saveSpot(with: spotName, lastActionDate: sourceViewController.lastActionDate)
+        fetchSpots()
         self.tableView.reloadData()
     }
 
     // MARK: - Private
 
     private func fetchSpots() {
-        let fetchRequest: NSFetchRequest<Spot> = Spot.fetchRequest()
-
-        do {
-            self.spots = try self.coreDataStack.context.fetch(fetchRequest)
-        }
-        catch {
-            assertionFailure()
+        self.context.tryPerform {
+            let fetchRequest: NSFetchRequest<Spot> = Spot.fetchRequest()
+            self.spots = try self.context.fetch(fetchRequest)
         }
     }
 
-    private func saveSpot(with name: String, lastActionDate: Date?) {
-        let spot = Spot(context: self.coreDataStack.context)
-        spot.name = name
-        spot.lastActionDate = lastActionDate
-        self.spots.append(spot)
+}
 
-        do {
-            try self.coreDataStack.context.save()
-        }
-        catch {
-            assertionFailure()
+private extension Collection {
+
+    /// Returns the element at the specified index if it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
+
+extension NSManagedObjectContext {
+    func tryPerform(action: @escaping () throws -> Void) {
+        self.performAndWait {
+            do {
+                try action()
+            }
+            catch let error as NSError {
+                assertionFailure("Error catched: \(error), \(error.userInfo)")
+            }
         }
     }
-
 }
