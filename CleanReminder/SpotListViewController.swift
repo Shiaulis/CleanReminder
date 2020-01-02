@@ -44,6 +44,11 @@ class SpotListViewController: UITableViewController {
         let spot = self.spots[indexPath.row]
         cell.textLabel?.text = spot.name
 
+        if let date = spot.lastActionDate {
+            let dateStringRepresentation = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
+            cell.detailTextLabel?.text = dateStringRepresentation
+        }
+
         return cell
     }
 
@@ -94,9 +99,10 @@ class SpotListViewController: UITableViewController {
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         guard segue.identifier == "save",
             let sourceViewController = segue.source as? NewSpotViewController,
-            let spotName = sourceViewController.spotName else { return }
+            let spotName = sourceViewController.spotName,
+            !spotName.isEmpty else { return }
 
-        saveSpot(with: spotName)
+        saveSpot(with: spotName, lastActionDate: sourceViewController.lastActionDate)
         self.tableView.reloadData()
     }
 
@@ -113,9 +119,10 @@ class SpotListViewController: UITableViewController {
         }
     }
 
-    private func saveSpot(with name: String) {
+    private func saveSpot(with name: String, lastActionDate: Date?) {
         let spot = Spot(context: self.coreDataStack.context)
         spot.name = name
+        spot.lastActionDate = lastActionDate
         self.spots.append(spot)
 
         do {

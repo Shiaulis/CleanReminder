@@ -2,7 +2,7 @@
 //  Spot+CoreDataProperties.swift
 //  CleanReminder
 //
-//  Created by Andrius Shiaulis on 01.01.2020.
+//  Created by Andrius Shiaulis on 02.01.2020.
 //  Copyright © 2020 Andrius Shiaulis. All rights reserved.
 //
 //
@@ -18,5 +18,6 @@ extension Spot {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var lastActionDate: Date?
 
 }

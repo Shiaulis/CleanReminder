@@ -16,17 +16,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spotCell" textLabel="46m-eN-8re" style="IBUITableViewCellStyleDefault" id="e7p-pX-iqc">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spotCell" textLabel="46m-eN-8re" detailTextLabel="7P6-Z7-fRp" style="IBUITableViewCellStyleSubtitle" id="e7p-pX-iqc">
+                                <rect key="frame" x="0.0" y="28" width="414" height="57.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e7p-pX-iqc" id="GM4-fd-3cs">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Spot name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="46m-eN-8re">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="46m-eN-8re">
+                                            <rect key="frame" x="20" y="9" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="7P6-Z7-fRp">
+                                            <rect key="frame" x="20" y="32.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -56,21 +63,36 @@
         <scene sceneID="fw6-7F-1re">
             <objects>
                 <viewController id="iyL-H8-Nre" customClass="NewSpotViewController" customModule="CleanReminder" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9dt-qo-xok">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="9dt-qo-xok">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Spot name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fFr-QH-fSc">
                                 <rect key="frame" x="20" y="72" width="374" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="TZh-mw-sKu">
+                                <rect key="frame" x="20" y="171.5" width="374" height="216"/>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="Last time you've touched a spot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Nt-BM-rGU">
+                                <rect key="frame" x="20" y="145.5" width="394" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fFr-QH-fSc" firstAttribute="leading" secondItem="RoV-dD-7dw" secondAttribute="leading" constant="20" id="4hA-b7-C1G"/>
+                            <constraint firstItem="8Nt-BM-rGU" firstAttribute="leading" secondItem="9dt-qo-xok" secondAttribute="leadingMargin" id="9by-r2-XW0"/>
                             <constraint firstItem="RoV-dD-7dw" firstAttribute="trailing" secondItem="fFr-QH-fSc" secondAttribute="trailing" constant="20" id="SHj-hE-M4V"/>
                             <constraint firstItem="fFr-QH-fSc" firstAttribute="top" secondItem="RoV-dD-7dw" secondAttribute="top" constant="16" id="UFm-ea-mMf"/>
+                            <constraint firstItem="TZh-mw-sKu" firstAttribute="firstBaseline" secondItem="8Nt-BM-rGU" secondAttribute="baseline" constant="11.5" symbolType="layoutAnchor" id="deu-tz-oW7"/>
+                            <constraint firstItem="TZh-mw-sKu" firstAttribute="leading" secondItem="9dt-qo-xok" secondAttribute="leadingMargin" id="haT-ei-MMV"/>
+                            <constraint firstItem="8Nt-BM-rGU" firstAttribute="firstBaseline" secondItem="fFr-QH-fSc" secondAttribute="baseline" multiplier="4" constant="22" symbolType="layoutAnchor" id="lYI-9E-5gS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TZh-mw-sKu" secondAttribute="trailing" id="rSu-JW-S7s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Nt-BM-rGU" secondAttribute="trailingMargin" id="wBO-uj-83H"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RoV-dD-7dw"/>
                     </view>
@@ -87,6 +109,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="TZh-mw-sKu" id="o3n-hE-qic"/>
                         <outlet property="spotNameTextField" destination="fFr-QH-fSc" id="mpj-cA-xwr"/>
                     </connections>
                 </viewController>

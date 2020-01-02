@@ -11,14 +11,17 @@ import UIKit
 class NewSpotViewController: UIViewController {
 
     @IBOutlet weak var spotNameTextField: UITextField!
-    var spotName: String? {
-        self.spotNameTextField.text
-    }
+    @IBOutlet weak var datePicker: UIDatePicker!
+
+    // MARK: - Properties
+    var spotName: String? { self.spotNameTextField.text }
+    var lastActionDate: Date? { self.datePicker.date }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.spotNameTextField.becomeFirstResponder()
+        self.datePicker.maximumDate = Date()
     }
 
 }
