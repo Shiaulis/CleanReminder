@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		095C5E0823BD3FCB00C59435 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E0723BD3FCB00C59435 /* AppDelegate.swift */; };
 		095C5E0A23BD3FCB00C59435 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E0923BD3FCB00C59435 /* SceneDelegate.swift */; };
-		095C5E0C23BD3FCB00C59435 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E0B23BD3FCB00C59435 /* ViewController.swift */; };
 		095C5E0F23BD3FCB00C59435 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 095C5E0D23BD3FCB00C59435 /* Main.storyboard */; };
 		095C5E1123BD3FCC00C59435 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 095C5E1023BD3FCC00C59435 /* Assets.xcassets */; };
 		095C5E1423BD3FCC00C59435 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 095C5E1223BD3FCC00C59435 /* LaunchScreen.storyboard */; };
 		095C5E1F23BD3FCD00C59435 /* CleanReminderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E1E23BD3FCD00C59435 /* CleanReminderTests.swift */; };
+		095C5E2A23BD43E000C59435 /* SpotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2923BD43E000C59435 /* SpotListViewController.swift */; };
+		095C5E2C23BD487F00C59435 /* NewSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2B23BD487F00C59435 /* NewSpotViewController.swift */; };
+		095C5E2E23BD499100C59435 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2D23BD499100C59435 /* CoreDataStack.swift */; };
+		095C5E3123BD4B0F00C59435 /* CleanReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */; };
+		095C5E3423BD4B5900C59435 /* Spot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E3223BD4B5900C59435 /* Spot+CoreDataClass.swift */; };
+		095C5E3523BD4B5900C59435 /* Spot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E3323BD4B5900C59435 /* Spot+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +35,6 @@
 		095C5E0423BD3FCB00C59435 /* CleanReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		095C5E0723BD3FCB00C59435 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		095C5E0923BD3FCB00C59435 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		095C5E0B23BD3FCB00C59435 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		095C5E0E23BD3FCB00C59435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		095C5E1023BD3FCC00C59435 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		095C5E1323BD3FCC00C59435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +42,12 @@
 		095C5E1A23BD3FCD00C59435 /* CleanReminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanReminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		095C5E1E23BD3FCD00C59435 /* CleanReminderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanReminderTests.swift; sourceTree = "<group>"; };
 		095C5E2023BD3FCD00C59435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		095C5E2923BD43E000C59435 /* SpotListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListViewController.swift; sourceTree = "<group>"; };
+		095C5E2B23BD487F00C59435 /* NewSpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpotViewController.swift; sourceTree = "<group>"; };
+		095C5E2D23BD499100C59435 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		095C5E3023BD4B0F00C59435 /* CleanReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CleanReminder.xcdatamodel; sourceTree = "<group>"; };
+		095C5E3223BD4B5900C59435 /* Spot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataClass.swift"; sourceTree = "<group>"; };
+		095C5E3323BD4B5900C59435 /* Spot+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +91,12 @@
 			children = (
 				095C5E0723BD3FCB00C59435 /* AppDelegate.swift */,
 				095C5E0923BD3FCB00C59435 /* SceneDelegate.swift */,
-				095C5E0B23BD3FCB00C59435 /* ViewController.swift */,
+				095C5E2D23BD499100C59435 /* CoreDataStack.swift */,
+				095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */,
+				095C5E3223BD4B5900C59435 /* Spot+CoreDataClass.swift */,
+				095C5E3323BD4B5900C59435 /* Spot+CoreDataProperties.swift */,
+				095C5E2923BD43E000C59435 /* SpotListViewController.swift */,
+				095C5E2B23BD487F00C59435 /* NewSpotViewController.swift */,
 				095C5E0D23BD3FCB00C59435 /* Main.storyboard */,
 				095C5E1023BD3FCC00C59435 /* Assets.xcassets */,
 				095C5E1223BD3FCC00C59435 /* LaunchScreen.storyboard */,
@@ -200,9 +215,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				095C5E0C23BD3FCB00C59435 /* ViewController.swift in Sources */,
+				095C5E3423BD4B5900C59435 /* Spot+CoreDataClass.swift in Sources */,
+				095C5E3523BD4B5900C59435 /* Spot+CoreDataProperties.swift in Sources */,
+				095C5E2E23BD499100C59435 /* CoreDataStack.swift in Sources */,
 				095C5E0823BD3FCB00C59435 /* AppDelegate.swift in Sources */,
+				095C5E2C23BD487F00C59435 /* NewSpotViewController.swift in Sources */,
+				095C5E2A23BD43E000C59435 /* SpotListViewController.swift in Sources */,
 				095C5E0A23BD3FCB00C59435 /* SceneDelegate.swift in Sources */,
+				095C5E3123BD4B0F00C59435 /* CleanReminder.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +489,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				095C5E3023BD4B0F00C59435 /* CleanReminder.xcdatamodel */,
+			);
+			currentVersion = 095C5E3023BD4B0F00C59435 /* CleanReminder.xcdatamodel */;
+			path = CleanReminder.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 095C5DFC23BD3FCB00C59435 /* Project object */;
 }
