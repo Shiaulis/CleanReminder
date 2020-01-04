@@ -17,9 +17,8 @@
 		095C5E2C23BD487F00C59435 /* SpotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2B23BD487F00C59435 /* SpotDetailViewController.swift */; };
 		095C5E2E23BD499100C59435 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2D23BD499100C59435 /* CoreDataStack.swift */; };
 		095C5E3123BD4B0F00C59435 /* CleanReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */; };
-		095C5E3423BD4B5900C59435 /* Spot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E3223BD4B5900C59435 /* Spot+CoreDataClass.swift */; };
-		095C5E3523BD4B5900C59435 /* Spot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E3323BD4B5900C59435 /* Spot+CoreDataProperties.swift */; };
 		096F34DE23BE716A00FDC923 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096F34DD23BE716A00FDC923 /* Frequency.swift */; };
+		09BBC44B23C12F8B00D1EFA7 /* Spot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,9 +46,8 @@
 		095C5E2B23BD487F00C59435 /* SpotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailViewController.swift; sourceTree = "<group>"; };
 		095C5E2D23BD499100C59435 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		095C5E3023BD4B0F00C59435 /* CleanReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CleanReminder.xcdatamodel; sourceTree = "<group>"; };
-		095C5E3223BD4B5900C59435 /* Spot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataClass.swift"; sourceTree = "<group>"; };
-		095C5E3323BD4B5900C59435 /* Spot+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		096F34DD23BE716A00FDC923 /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
+		09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataClass.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,12 +89,11 @@
 		095C5E0623BD3FCB00C59435 /* CleanReminder */ = {
 			isa = PBXGroup;
 			children = (
+				09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */,
 				095C5E0723BD3FCB00C59435 /* AppDelegate.swift */,
 				095C5E0923BD3FCB00C59435 /* SceneDelegate.swift */,
 				095C5E2D23BD499100C59435 /* CoreDataStack.swift */,
 				095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */,
-				095C5E3223BD4B5900C59435 /* Spot+CoreDataClass.swift */,
-				095C5E3323BD4B5900C59435 /* Spot+CoreDataProperties.swift */,
 				095C5E2923BD43E000C59435 /* SpotListViewController.swift */,
 				095C5E2B23BD487F00C59435 /* SpotDetailViewController.swift */,
 				095C5E0D23BD3FCB00C59435 /* Main.storyboard */,
@@ -218,13 +215,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				095C5E3423BD4B5900C59435 /* Spot+CoreDataClass.swift in Sources */,
-				095C5E3523BD4B5900C59435 /* Spot+CoreDataProperties.swift in Sources */,
 				095C5E2E23BD499100C59435 /* CoreDataStack.swift in Sources */,
 				095C5E0823BD3FCB00C59435 /* AppDelegate.swift in Sources */,
 				095C5E2C23BD487F00C59435 /* SpotDetailViewController.swift in Sources */,
 				096F34DE23BE716A00FDC923 /* Frequency.swift in Sources */,
 				095C5E2A23BD43E000C59435 /* SpotListViewController.swift in Sources */,
+				09BBC44B23C12F8B00D1EFA7 /* Spot+CoreDataClass.swift in Sources */,
 				095C5E0A23BD3FCB00C59435 /* SceneDelegate.swift in Sources */,
 				095C5E3123BD4B0F00C59435 /* CleanReminder.xcdatamodeld in Sources */,
 			);

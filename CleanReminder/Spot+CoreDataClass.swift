@@ -2,7 +2,7 @@
 //  Spot+CoreDataClass.swift
 //  CleanReminder
 //
-//  Created by Andrius Shiaulis on 01.01.2020.
+//  Created by Andrius Shiaulis on 04.01.2020.
 //  Copyright © 2020 Andrius Shiaulis. All rights reserved.
 //
 //
@@ -14,12 +14,8 @@ import CoreData
 public class Spot: NSManagedObject {
 
     var frequency: Frequency? {
-        get {
-            Frequency(frequencyDictionary: self.frequencyDictionary)
-        }
-        set {
-            self.frequencyDictionary = newValue?.frequencyDictionary
-        }
+        get { Frequency(rawValue: self.frequencyType) }
+        set { self.frequencyType = newValue?.rawValue ?? 0 }
     }
 
 }
