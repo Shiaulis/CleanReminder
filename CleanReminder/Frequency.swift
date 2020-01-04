@@ -14,4 +14,22 @@ enum Frequency: Int16 {
     case weekly
     case monthly
     case yearly
+
+//    init(_ integer: Int) {
+//        self = Frequency(rawValue: .init(integer)) ?? Frequency.none
+//    }
+
+    var title: String {
+        switch self {
+        case .none: return "none"
+        case .daily: return "daily"
+        case .weekly: return "weekly"
+        case .monthly: return "monthly"
+        case .yearly: return "yearly"
+        }
+    }
+}
+
+extension Frequency: CaseIterable {
+    
 }

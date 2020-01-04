@@ -73,20 +73,39 @@ class SpotListViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? UINavigationController,
-            let spotDetailViewController = destination.viewControllers.first as? SpotDetailViewController else { return }
+        let spotDetailViewController: SpotDetailViewController
 
-        spotDetailViewController.context = self.context
-
-        guard segue.identifier == "showDetail" else { return }
-
-        guard let selectedIndexPath = self.tableView.indexPathForSelectedRow,
-            let spot = self.spots[safe: selectedIndexPath.row] else {
-                assertionFailure("Selected spot is expected")
+        switch segue.identifier {
+        case "newSpot":
+            guard let destination = segue.destination as? UINavigationController,
+            let viewController = destination.viewControllers.first as? SpotDetailViewController else {
+                assertionFailure("Unexpected UI stack")
                 return
-        }
+            }
 
-        spotDetailViewController.spot = spot
+            spotDetailViewController = viewController
+            spotDetailViewController.context = self.context
+        case "showDetail":
+            guard let viewController = segue.destination as? SpotDetailViewController else {
+                assertionFailure("Unexpected UI stack")
+                return
+            }
+
+            spotDetailViewController = viewController
+            spotDetailViewController.context = self.context
+
+            guard let selectedIndexPath = self.tableView.indexPathForSelectedRow,
+                let spot = self.spots[safe: selectedIndexPath.row] else {
+                    assertionFailure("Selected spot is expected")
+                    return
+            }
+
+            spotDetailViewController.spot = spot
+
+        default:
+            assertionFailure("Unknown segue")
+            return
+        }
     }
 
     @IBAction func unwind(for segue: UIStoryboardSegue) {

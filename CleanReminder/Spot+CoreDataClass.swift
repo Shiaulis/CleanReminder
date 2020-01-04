@@ -13,9 +13,9 @@ import CoreData
 @objc(Spot)
 public class Spot: NSManagedObject {
 
-    var frequency: Frequency? {
-        get { Frequency(rawValue: self.frequencyType) }
-        set { self.frequencyType = newValue?.rawValue ?? 0 }
+    var frequency: Frequency {
+        get { Frequency(rawValue: self.frequencyType) ?? Frequency.none }
+        set { self.frequencyType = newValue.rawValue }
     }
 
 }

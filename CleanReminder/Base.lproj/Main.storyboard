@@ -39,7 +39,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Ij6-R2-mBc" kind="show" identifier="showDetail" id="0JU-HW-fWW"/>
+                                    <segue destination="Tkz-Yi-TcI" kind="show" identifier="showDetail" id="Kq6-l3-YBF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -66,7 +66,7 @@
             <objects>
                 <tableViewController id="Tkz-Yi-TcI" customClass="SpotDetailViewController" customModule="CleanReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="6Md-fV-94p">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="U9p-2M-tkz">
@@ -129,6 +129,9 @@
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="iT5-m0-nhZ">
                                                     <rect key="frame" x="20" y="11" width="334" height="22"/>
+                                                    <connections>
+                                                        <action selector="dateChanged:" destination="Tkz-Yi-TcI" eventType="valueChanged" id="zXX-Lq-omh"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -143,11 +146,11 @@
                             </tableViewSection>
                             <tableViewSection id="Vrv-aY-52X">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Clq-Tw-1VP" detailTextLabel="tzS-5w-G5Z" style="IBUITableViewCellStyleValue1" id="RjY-H4-Alj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Clq-Tw-1VP" detailTextLabel="tzS-5w-G5Z" style="IBUITableViewCellStyleValue1" id="RjY-H4-Alj">
                                         <rect key="frame" x="20" y="220.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RjY-H4-Alj" id="wHA-F6-JX7">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Clq-Tw-1VP">
@@ -158,13 +161,32 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Weekly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="tzS-5w-G5Z">
-                                                    <rect key="frame" x="279.5" y="12" width="55.5" height="20.5"/>
+                                                    <rect key="frame" x="298.5" y="12" width="55.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TLD-z7-XNB">
+                                        <rect key="frame" x="20" y="264" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TLD-z7-XNB" id="BiB-r0-Wxt">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KT7-bL-1Or" customClass="FrequencyPicker" customModule="CleanReminder" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KT7-bL-1Or" firstAttribute="top" secondItem="BiB-r0-Wxt" secondAttribute="topMargin" id="EP2-27-QDh"/>
+                                                <constraint firstItem="KT7-bL-1Or" firstAttribute="leading" secondItem="BiB-r0-Wxt" secondAttribute="leadingMargin" id="HHh-XO-GXR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KT7-bL-1Or" secondAttribute="trailing" id="vpz-MI-9C3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="KT7-bL-1Or" secondAttribute="bottom" id="ykk-I3-I02"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -175,7 +197,7 @@
                             <outlet property="delegate" destination="Tkz-Yi-TcI" id="PZQ-yV-h7T"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="avg-Or-v4n">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="avg-Or-v4n">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uG5-BD-AOS">
                             <connections>
                                 <segue destination="Vn7-yo-v1A" kind="unwind" identifier="back" unwindAction="unwindFor:" id="BVj-4N-bj4"/>
@@ -189,6 +211,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="datePicker" destination="iT5-m0-nhZ" id="eJl-tp-aW9"/>
+                        <outlet property="frequencyDetailLabel" destination="tzS-5w-G5Z" id="XVf-yP-mAM"/>
+                        <outlet property="frequencyPicker" destination="KT7-bL-1Or" id="LA9-wk-4ez"/>
                         <outlet property="lastDateDetailLabel" destination="Ys1-Q2-Tzd" id="8mY-Bk-uCY"/>
                         <outlet property="textField" destination="rDx-r0-cIF" id="Tlu-z5-BMd"/>
                     </connections>
@@ -196,7 +220,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXA-J9-fGv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Vn7-yo-v1A" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2755" y="25"/>
+            <point key="canvasLocation" x="2414" y="25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wgs-GD-XV8">
@@ -233,10 +257,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xhb-f8-ZkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1904" y="25"/>
+            <point key="canvasLocation" x="1596" y="-322"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gCB-t6-gdg"/>
+        <segue reference="Kq6-l3-YBF"/>
     </inferredMetricsTieBreakers>
 </document>
