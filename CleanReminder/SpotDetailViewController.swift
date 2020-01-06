@@ -12,6 +12,7 @@ import CoreData
 class SpotDetailViewController: UITableViewController {
 
     @IBOutlet weak var saveButtonItem: UIBarButtonItem!
+    @IBOutlet weak var cancelButtonItem: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var lastDateDetailLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -23,14 +24,21 @@ class SpotDetailViewController: UITableViewController {
     var spot: Spot?
     var context: NSManagedObjectContext!
     private var currentTextFieldTitle: String { self.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "" }
+    private var hasChanges: Bool {
+        let nameHasChanges = self.spot?.name?.trimmingCharacters(in: .whitespacesAndNewlines) != self.currentTextFieldTitle
+        let dateHasChanges = self.spot?.lastActionDate != self.datePicker.date
+        let frequencyHasChanges = self.spot?.frequency != self.frequencyPicker.selectedFrequency
 
+        return nameHasChanges || dateHasChanges || frequencyHasChanges
+    }
+
+    private var canBeSaved: Bool { !self.currentTextFieldTitle.isEmpty }
 
     // MARK: - UIViewController lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.textField.becomeFirstResponder()
         self.datePicker.maximumDate = Date()
         self.frequencyPicker.selectedBlock = { [weak self] selectedFrequency in
             self?.frequencyDetailLabel.text = selectedFrequency.title
@@ -39,25 +47,39 @@ class SpotDetailViewController: UITableViewController {
         if let spot = self.spot {
             setup(with: spot)
         }
-        else {
-            self.saveButtonItem.isEnabled = !self.currentTextFieldTitle.isEmpty
-        }
 
         self.lastDateDetailLabel.text = string(describing: self.datePicker.date)
         self.frequencyDetailLabel.text = frequencyPicker.selectedFrequency.title
+
+        self.presentationController?.delegate = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.textField.becomeFirstResponder()
+        preventDismissIfNeeded()
     }
 
     @IBAction func dateChanged(_ sender: UIDatePicker) {
         self.lastDateDetailLabel.text = string(describing: sender.date)
+        preventDismissIfNeeded()
     }
 
     @IBAction func textFieldValueChanged(_ sender: UITextField) {
-        self.saveButtonItem.isEnabled = !self.currentTextFieldTitle.isEmpty
+        preventDismissIfNeeded()
     }
 
-    @IBAction func save(_ sender: UINavigationItem) {
-        saveSpot()
-        self.performSegue(withIdentifier: "back", sender: sender)
+    @IBAction func saveTapped(_ sender: UINavigationItem) {
+        performSave(sender: sender)
+    }
+    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
+        if self.hasChanges {
+            confirmCancel()
+        }
+        else {
+            unwindBack(sender: sender)
+        }
     }
 
     // MARK: - Private
@@ -79,7 +101,46 @@ class SpotDetailViewController: UITableViewController {
         }
     }
 
+    private func preventDismissIfNeeded() {
+        self.isModalInPresentation = self.hasChanges
+        self.saveButtonItem.isEnabled = self.canBeSaved && self.hasChanges
+    }
+
     private func string(describing date: Date) -> String {
         return DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
     }
+
+    private func performSave(sender: Any?) {
+        saveSpot()
+        unwindBack(sender: sender)
+    }
+
+    private func unwindBack(sender: Any? = nil) {
+        self.performSegue(withIdentifier: "back", sender: sender)
+    }
+
+    func confirmCancel() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        if self.canBeSaved {
+            alert.addAction(.init(title: "Save", style: .default) { action in
+                self.performSave(sender: action)
+            })
+        }
+
+        alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive) { action in
+            self.unwindBack(sender: action)
+        })
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.popoverPresentationController?.barButtonItem = self.cancelButtonItem
+
+        present(alert, animated: true, completion: nil)
+    }
 }
+
+extension SpotDetailViewController: UIAdaptivePresentationControllerDelegate {
+
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        confirmCancel()
+    }}

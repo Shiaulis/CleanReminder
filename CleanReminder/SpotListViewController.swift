@@ -92,13 +92,14 @@ class SpotListViewController: UITableViewController {
 
         switch segue.identifier {
         case Segues.newSpot.id:
-            guard let destination = segue.destination as? UINavigationController,
-            let viewController = destination.viewControllers.first as? SpotDetailViewController else {
+            guard let destinationNavigationController = segue.destination as? UINavigationController,
+            let destinationViewController = destinationNavigationController.viewControllers.first as? SpotDetailViewController else {
                 assertionFailure("Unexpected UI stack")
                 return
             }
 
-            spotDetailViewController = viewController
+            destinationNavigationController.presentationController?.delegate = destinationViewController
+            spotDetailViewController = destinationViewController
             spotDetailViewController.context = self.context
         case Segues.showDetail.id:
             guard let viewController = segue.destination as? SpotDetailViewController else {
