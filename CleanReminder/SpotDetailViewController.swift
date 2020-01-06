@@ -11,6 +11,7 @@ import CoreData
 
 class SpotDetailViewController: UITableViewController {
 
+    @IBOutlet weak var saveButtonItem: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var lastDateDetailLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -21,6 +22,7 @@ class SpotDetailViewController: UITableViewController {
 
     var spot: Spot?
     var context: NSManagedObjectContext!
+    private var currentTextFieldTitle: String { self.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "" }
 
 
     // MARK: - UIViewController lifecycle
@@ -37,6 +39,9 @@ class SpotDetailViewController: UITableViewController {
         if let spot = self.spot {
             setup(with: spot)
         }
+        else {
+            self.saveButtonItem.isEnabled = !self.currentTextFieldTitle.isEmpty
+        }
 
         self.lastDateDetailLabel.text = string(describing: self.datePicker.date)
         self.frequencyDetailLabel.text = frequencyPicker.selectedFrequency.title
@@ -44,6 +49,10 @@ class SpotDetailViewController: UITableViewController {
 
     @IBAction func dateChanged(_ sender: UIDatePicker) {
         self.lastDateDetailLabel.text = string(describing: sender.date)
+    }
+
+    @IBAction func textFieldValueChanged(_ sender: UITextField) {
+        self.saveButtonItem.isEnabled = !self.currentTextFieldTitle.isEmpty
     }
 
     @IBAction func save(_ sender: UINavigationItem) {
@@ -60,8 +69,8 @@ class SpotDetailViewController: UITableViewController {
     }
 
     private func saveSpot() {
-        let spot: Spot = self.spot ?? Spot(context: self.context)
-        spot.name = self.textField.text
+        let spot: Spot = self.spot ?? .init(context: self.context)
+        spot.name = self.currentTextFieldTitle
         spot.lastActionDate = self.datePicker.date
         spot.frequency = self.frequencyPicker.selectedFrequency
 
@@ -74,4 +83,3 @@ class SpotDetailViewController: UITableViewController {
         return DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
     }
 }
-

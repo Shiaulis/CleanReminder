@@ -56,6 +56,9 @@
                                                     <rect key="frame" x="20" y="11" width="334" height="22"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="textFieldValueChanged:" destination="Tkz-Yi-TcI" eventType="editingChanged" id="7lC-NQ-b0y"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -188,6 +191,7 @@
                         <outlet property="frequencyDetailLabel" destination="tzS-5w-G5Z" id="XVf-yP-mAM"/>
                         <outlet property="frequencyPicker" destination="KT7-bL-1Or" id="LA9-wk-4ez"/>
                         <outlet property="lastDateDetailLabel" destination="Ys1-Q2-Tzd" id="8mY-Bk-uCY"/>
+                        <outlet property="saveButtonItem" destination="RcE-1F-Sih" id="fsH-Tq-fd6"/>
                         <outlet property="textField" destination="rDx-r0-cIF" id="Tlu-z5-BMd"/>
                     </connections>
                 </tableViewController>
