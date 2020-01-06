@@ -20,6 +20,8 @@
 		095C5E3123BD4B0F00C59435 /* CleanReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */; };
 		096F34DE23BE716A00FDC923 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096F34DD23BE716A00FDC923 /* Frequency.swift */; };
 		09BBC44B23C12F8B00D1EFA7 /* Spot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */; };
+		09DF07A723C3C5ED00131A3C /* SpotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */; };
+		09DF07A823C3C5ED00131A3C /* SpotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		095C5E3023BD4B0F00C59435 /* CleanReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CleanReminder.xcdatamodel; sourceTree = "<group>"; };
 		096F34DD23BE716A00FDC923 /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataClass.swift"; sourceTree = "<group>"; };
+		09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotTableViewCell.swift; sourceTree = "<group>"; };
+		09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				095C5E1523BD3FCC00C59435 /* Info.plist */,
 				096F34DD23BE716A00FDC923 /* Frequency.swift */,
 				092FEE4823C1378D00060CCE /* FrequencyPicker.swift */,
+				09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */,
+				09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */,
 			);
 			path = CleanReminder;
 			sourceTree = "<group>";
@@ -201,6 +207,7 @@
 				095C5E1423BD3FCC00C59435 /* LaunchScreen.storyboard in Resources */,
 				095C5E1123BD3FCC00C59435 /* Assets.xcassets in Resources */,
 				095C5E0F23BD3FCB00C59435 /* Main.storyboard in Resources */,
+				09DF07A823C3C5ED00131A3C /* SpotTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +228,7 @@
 				095C5E2E23BD499100C59435 /* CoreDataStack.swift in Sources */,
 				095C5E0823BD3FCB00C59435 /* AppDelegate.swift in Sources */,
 				095C5E2C23BD487F00C59435 /* SpotDetailViewController.swift in Sources */,
+				09DF07A723C3C5ED00131A3C /* SpotTableViewCell.swift in Sources */,
 				096F34DE23BE716A00FDC923 /* Frequency.swift in Sources */,
 				092FEE4923C1378D00060CCE /* FrequencyPicker.swift in Sources */,
 				095C5E2A23BD43E000C59435 /* SpotListViewController.swift in Sources */,

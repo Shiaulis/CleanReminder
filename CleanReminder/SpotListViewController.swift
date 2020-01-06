@@ -11,6 +11,15 @@ import CoreData
 
 class SpotListViewController: UITableViewController {
 
+    private enum Segues: String {
+        case showDetail = "showDetail"
+        case newSpot = "newSpot"
+
+        var id: String { self.rawValue }
+    }
+
+    private let cellID = "spotCell"
+
     private var context: NSManagedObjectContext!
     private var spots: [Spot] = .init()
 
@@ -19,6 +28,9 @@ class SpotListViewController: UITableViewController {
 
         self.context = CoreDataStack(modelName: "CleanReminder").context
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let cellClassName = String(describing: SpotTableViewCell.self)
+        let cellUINib = UINib(nibName: cellClassName, bundle: nil)
+        self.tableView.register(cellUINib, forCellReuseIdentifier: self.cellID)
 
         fetchSpots()
     }
@@ -39,19 +51,22 @@ class SpotListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "spotCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath) as? SpotTableViewCell else {
+            return UITableViewCell()
+        }
         let spot = self.spots[indexPath.row]
-        cell.textLabel?.text = spot.name
+        cell.titleLabel?.text = spot.name
 
         if let date = spot.lastActionDate {
             let dateStringRepresentation = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
-            cell.detailTextLabel?.text = dateStringRepresentation
+            cell.subtitleLabel?.text = dateStringRepresentation
         }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Segues.showDetail.id, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -76,7 +91,7 @@ class SpotListViewController: UITableViewController {
         let spotDetailViewController: SpotDetailViewController
 
         switch segue.identifier {
-        case "newSpot":
+        case Segues.newSpot.id:
             guard let destination = segue.destination as? UINavigationController,
             let viewController = destination.viewControllers.first as? SpotDetailViewController else {
                 assertionFailure("Unexpected UI stack")
@@ -85,7 +100,7 @@ class SpotListViewController: UITableViewController {
 
             spotDetailViewController = viewController
             spotDetailViewController.context = self.context
-        case "showDetail":
+        case Segues.showDetail.id:
             guard let viewController = segue.destination as? SpotDetailViewController else {
                 assertionFailure("Unexpected UI stack")
                 return
