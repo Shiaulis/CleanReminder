@@ -11,17 +11,14 @@ import CoreData
 
 class SpotListViewController: UITableViewController {
 
-    private enum Segues: String {
-        case showDetail = "showDetail"
-        case newSpot = "newSpot"
-
-        var id: String { self.rawValue }
-    }
+    // MARK: - Properties
 
     private let cellID = "spotCell"
 
     private var context: NSManagedObjectContext!
     private var spots: [Spot] = .init()
+
+    // MARK: - UIViewController lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +31,6 @@ class SpotListViewController: UITableViewController {
 
         fetchSpots()
     }
-
-    @IBAction func addSpotTapped(_ sender: UIBarButtonItem) {
-    }
-    
 
     // MARK: - Table view data source
 
@@ -66,11 +59,10 @@ class SpotListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Segues.showDetail.id, sender: self)
+        performSegue(withIdentifier: "showDetail", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.context.tryPerform {
@@ -91,7 +83,7 @@ class SpotListViewController: UITableViewController {
         let spotDetailViewController: SpotDetailViewController
 
         switch segue.identifier {
-        case Segues.newSpot.id:
+        case "newSpot":
             guard let destinationNavigationController = segue.destination as? UINavigationController,
             let destinationViewController = destinationNavigationController.viewControllers.first as? SpotDetailViewController else {
                 assertionFailure("Unexpected UI stack")
@@ -101,7 +93,7 @@ class SpotListViewController: UITableViewController {
             destinationNavigationController.presentationController?.delegate = destinationViewController
             spotDetailViewController = destinationViewController
             spotDetailViewController.context = self.context
-        case Segues.showDetail.id:
+        case "showDetail":
             guard let viewController = segue.destination as? SpotDetailViewController else {
                 assertionFailure("Unexpected UI stack")
                 return
@@ -143,25 +135,4 @@ class SpotListViewController: UITableViewController {
         }
     }
 
-}
-
-private extension Collection {
-
-    /// Returns the element at the specified index if it is within bounds, otherwise nil.
-    subscript (safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
-    }
-}
-
-extension NSManagedObjectContext {
-    func tryPerform(action: @escaping () throws -> Void) {
-        self.performAndWait {
-            do {
-                try action()
-            }
-            catch let error as NSError {
-                assertionFailure("Error catched: \(error), \(error.userInfo)")
-            }
-        }
-    }
 }

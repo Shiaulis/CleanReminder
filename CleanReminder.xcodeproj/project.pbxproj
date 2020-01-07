@@ -22,6 +22,8 @@
 		09BBC44B23C12F8B00D1EFA7 /* Spot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */; };
 		09DF07A723C3C5ED00131A3C /* SpotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */; };
 		09DF07A823C3C5ED00131A3C /* SpotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */; };
+		B16C271323C4DF440029DDE6 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16C271223C4DF440029DDE6 /* Collection+Extensions.swift */; };
+		B16C271523C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16C271423C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataClass.swift"; sourceTree = "<group>"; };
 		09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotTableViewCell.swift; sourceTree = "<group>"; };
 		09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotTableViewCell.xib; sourceTree = "<group>"; };
+		B16C271223C4DF440029DDE6 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		B16C271423C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,21 +99,12 @@
 		095C5E0623BD3FCB00C59435 /* CleanReminder */ = {
 			isa = PBXGroup;
 			children = (
-				09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */,
-				095C5E0723BD3FCB00C59435 /* AppDelegate.swift */,
-				095C5E0923BD3FCB00C59435 /* SceneDelegate.swift */,
-				095C5E2D23BD499100C59435 /* CoreDataStack.swift */,
-				095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */,
-				095C5E2923BD43E000C59435 /* SpotListViewController.swift */,
-				095C5E2B23BD487F00C59435 /* SpotDetailViewController.swift */,
-				095C5E0D23BD3FCB00C59435 /* Main.storyboard */,
-				095C5E1023BD3FCC00C59435 /* Assets.xcassets */,
-				095C5E1223BD3FCC00C59435 /* LaunchScreen.storyboard */,
-				095C5E1523BD3FCC00C59435 /* Info.plist */,
+				B16C271723C4E06C0029DDE6 /* Core Data */,
+				B16C271823C4E0880029DDE6 /* View Controllers */,
+				B16C271623C4E03A0029DDE6 /* Supporting Files */,
+				B16C271923C4E0A50029DDE6 /* Views */,
 				096F34DD23BE716A00FDC923 /* Frequency.swift */,
-				092FEE4823C1378D00060CCE /* FrequencyPicker.swift */,
-				09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */,
-				09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */,
+				B16C271223C4DF440029DDE6 /* Collection+Extensions.swift */,
 			);
 			path = CleanReminder;
 			sourceTree = "<group>";
@@ -121,6 +116,49 @@
 				095C5E2023BD3FCD00C59435 /* Info.plist */,
 			);
 			path = CleanReminderTests;
+			sourceTree = "<group>";
+		};
+		B16C271623C4E03A0029DDE6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				095C5E0723BD3FCB00C59435 /* AppDelegate.swift */,
+				095C5E0923BD3FCB00C59435 /* SceneDelegate.swift */,
+				095C5E1023BD3FCC00C59435 /* Assets.xcassets */,
+				095C5E1223BD3FCC00C59435 /* LaunchScreen.storyboard */,
+				095C5E1523BD3FCC00C59435 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B16C271723C4E06C0029DDE6 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */,
+				09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */,
+				095C5E2D23BD499100C59435 /* CoreDataStack.swift */,
+				B16C271423C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		B16C271823C4E0880029DDE6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				095C5E2923BD43E000C59435 /* SpotListViewController.swift */,
+				095C5E2B23BD487F00C59435 /* SpotDetailViewController.swift */,
+				095C5E0D23BD3FCB00C59435 /* Main.storyboard */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B16C271923C4E0A50029DDE6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				092FEE4823C1378D00060CCE /* FrequencyPicker.swift */,
+				09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */,
+				09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +266,7 @@
 				095C5E2E23BD499100C59435 /* CoreDataStack.swift in Sources */,
 				095C5E0823BD3FCB00C59435 /* AppDelegate.swift in Sources */,
 				095C5E2C23BD487F00C59435 /* SpotDetailViewController.swift in Sources */,
+				B16C271323C4DF440029DDE6 /* Collection+Extensions.swift in Sources */,
 				09DF07A723C3C5ED00131A3C /* SpotTableViewCell.swift in Sources */,
 				096F34DE23BE716A00FDC923 /* Frequency.swift in Sources */,
 				092FEE4923C1378D00060CCE /* FrequencyPicker.swift in Sources */,
@@ -235,6 +274,7 @@
 				09BBC44B23C12F8B00D1EFA7 /* Spot+CoreDataClass.swift in Sources */,
 				095C5E0A23BD3FCB00C59435 /* SceneDelegate.swift in Sources */,
 				095C5E3123BD4B0F00C59435 /* CleanReminder.xcdatamodeld in Sources */,
+				B16C271523C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +436,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NFA8F38A32;
-				INFOPLIST_FILE = CleanReminder/Info.plist;
+				INFOPLIST_FILE = "CleanReminder/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -414,7 +454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NFA8F38A32;
-				INFOPLIST_FILE = CleanReminder/Info.plist;
+				INFOPLIST_FILE = "CleanReminder/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

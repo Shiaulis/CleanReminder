@@ -22,7 +22,6 @@
                     <navigationItem key="navigationItem" title="Spots" id="HAa-2M-13d">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="LBA-uC-gyF">
                             <connections>
-                                <action selector="addSpotTapped:" destination="Qnk-If-kcr" id="4dn-vx-7NW"/>
                                 <segue destination="Ij6-R2-mBc" kind="presentation" identifier="newSpot" id="gCB-t6-gdg"/>
                             </connections>
                         </barButtonItem>

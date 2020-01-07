@@ -8,16 +8,12 @@
 
 import Foundation
 
-enum Frequency: Int16 {
+enum Frequency: Int16, CaseIterable {
     case none
     case daily
     case weekly
     case monthly
     case yearly
-
-//    init(_ integer: Int) {
-//        self = Frequency(rawValue: .init(integer)) ?? Frequency.none
-//    }
 
     var title: String {
         switch self {
@@ -28,8 +24,4 @@ enum Frequency: Int16 {
         case .yearly: return "yearly"
         }
     }
-}
-
-extension Frequency: CaseIterable {
-    
 }

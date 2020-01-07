@@ -42,6 +42,7 @@ class SpotDetailViewController: UITableViewController {
         self.datePicker.maximumDate = Date()
         self.frequencyPicker.selectedBlock = { [weak self] selectedFrequency in
             self?.frequencyDetailLabel.text = selectedFrequency.title
+            self?.preventDismissIfNeeded()
         }
 
         if let spot = self.spot {
@@ -61,6 +62,8 @@ class SpotDetailViewController: UITableViewController {
         preventDismissIfNeeded()
     }
 
+    // MARK: - IBActions
+
     @IBAction func dateChanged(_ sender: UIDatePicker) {
         self.lastDateDetailLabel.text = string(describing: sender.date)
         preventDismissIfNeeded()
@@ -73,6 +76,7 @@ class SpotDetailViewController: UITableViewController {
     @IBAction func saveTapped(_ sender: UINavigationItem) {
         performSave(sender: sender)
     }
+
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
         if self.hasChanges {
             confirmCancel()
@@ -143,4 +147,6 @@ extension SpotDetailViewController: UIAdaptivePresentationControllerDelegate {
 
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
         confirmCancel()
-    }}
+    }
+
+}

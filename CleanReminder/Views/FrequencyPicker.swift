@@ -10,6 +10,8 @@ import UIKit
 
 class FrequencyPicker: UIPickerView {
 
+    // MARK: - Properties
+
     var selectedFrequency: Frequency {
         let row = self.selectedRow(inComponent: 0)
         return self.frequencies[row]
@@ -20,6 +22,8 @@ class FrequencyPicker: UIPickerView {
     var selectedBlock: ((Frequency) -> Void)?
 
     private var frequencies: [Frequency]
+
+    // MARK: - Initialization
 
     required init?(coder: NSCoder) {
         self.frequencies = Frequency.allCases
@@ -40,6 +44,8 @@ class FrequencyPicker: UIPickerView {
         selectedBlock?(frequency)
     }
 }
+
+// MARK: - UIPicker related methods
 
 extension FrequencyPicker: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

@@ -11,6 +11,12 @@ import CoreData
 
 final class CoreDataStack {
 
+    // MARK: - Properties
+
+    var context: NSManagedObjectContext {
+        self.persistentContainer.viewContext
+    }
+
     private let modelName: String
     private lazy var persistentContainer: NSPersistentContainer = {
         let container: NSPersistentContainer = .init(name: self.modelName)
@@ -23,9 +29,7 @@ final class CoreDataStack {
         return container
     }()
 
-    var context: NSManagedObjectContext {
-        self.persistentContainer.viewContext
-    }
+    // MARK: - Initialization
 
     init(modelName: String) {
         self.modelName = modelName
