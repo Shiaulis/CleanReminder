@@ -14,47 +14,67 @@ class SpotListViewController: UITableViewController {
     // MARK: - Properties
 
     private let cellID = "spotCell"
+    private lazy var context: NSManagedObjectContext = {
+        CoreDataStack(modelName: "CleanReminder").context
+    }()
 
-    private var context: NSManagedObjectContext!
-    private var spots: [Spot] = .init()
+    private lazy var fetchController: NSFetchedResultsController<Spot> = {
+        let fetchRequest: NSFetchRequest<Spot> = Spot.fetchRequest()
+        let sort: NSSortDescriptor = .init(
+            key: #keyPath(Spot.name),
+            ascending: true
+        )
+        fetchRequest.sortDescriptors = [sort]
+
+        let controller: NSFetchedResultsController = .init(
+            fetchRequest: fetchRequest,
+            managedObjectContext: self.context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+
+        controller.delegate = self
+
+        return controller
+    }()
 
     // MARK: - UIViewController lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.context = CoreDataStack(modelName: "CleanReminder").context
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        let cellClassName = String(describing: SpotTableViewCell.self)
-        let cellUINib = UINib(nibName: cellClassName, bundle: nil)
-        self.tableView.register(cellUINib, forCellReuseIdentifier: self.cellID)
-
-        fetchSpots()
+        pefrormInitialFetch()
+        perfromInitialUIConfigure()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        guard let sectionsInfo = self.fetchController.sections else {
+            assertionFailure("no sections info")
+            return 0
+        }
+
+        return sectionsInfo.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.spots.count
+        guard let sectionsInfo = self.fetchController.sections else {
+            assertionFailure("no sections info")
+            return 0
+        }
+
+        guard let sectionInfo = sectionsInfo[safe: section] else {
+            assertionFailure("Index out of range")
+            return 0
+        }
+
+        return sectionInfo.numberOfObjects
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath) as? SpotTableViewCell else {
-            return UITableViewCell()
-        }
-        let spot = self.spots[indexPath.row]
-        cell.titleLabel?.text = spot.name
-
-        if let date = spot.lastActionDate {
-            let dateStringRepresentation = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
-            cell.subtitleLabel?.text = dateStringRepresentation
-        }
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath)
+        configure(cell: cell, at: indexPath)
         return cell
     }
 
@@ -65,12 +85,7 @@ class SpotListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.context.tryPerform {
-                let spot = self.spots[indexPath.row]
-                self.context.delete(spot)
-                try? self.context.save()
-                self.spots.remove(at: indexPath.row)
-            }
+            // FIXME: apply object deletion
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -102,13 +117,12 @@ class SpotListViewController: UITableViewController {
             spotDetailViewController = viewController
             spotDetailViewController.context = self.context
 
-            guard let selectedIndexPath = self.tableView.indexPathForSelectedRow,
-                let spot = self.spots[safe: selectedIndexPath.row] else {
-                    assertionFailure("Selected spot is expected")
+            guard let selectedIndexPath = self.tableView.indexPathForSelectedRow else {
+                    assertionFailure("Selected cell is expected")
                     return
             }
 
-            spotDetailViewController.spot = spot
+            spotDetailViewController.spot = self.fetchController.object(at: selectedIndexPath)
 
         default:
             assertionFailure("Unknown segue")
@@ -119,20 +133,45 @@ class SpotListViewController: UITableViewController {
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         guard segue.identifier == "back",
             (segue.source as? SpotDetailViewController) != nil else {
+                assertionFailure("Unknown segue")
                 return
         }
-
-        fetchSpots()
-        self.tableView.reloadData()
     }
 
     // MARK: - Private
 
-    private func fetchSpots() {
+    private func pefrormInitialFetch() {
         self.context.tryPerform {
-            let fetchRequest: NSFetchRequest<Spot> = Spot.fetchRequest()
-            self.spots = try self.context.fetch(fetchRequest)
+            try self.fetchController.performFetch()
         }
     }
 
+    private func perfromInitialUIConfigure() {
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let cellClassName: String = .init(describing: SpotTableViewCell.self)
+        let cellUINib: UINib = .init(nibName: cellClassName, bundle: nil)
+        self.tableView.register(cellUINib, forCellReuseIdentifier: self.cellID)
+    }
+
+    private func configure(cell: UITableViewCell, at indexPath: IndexPath) {
+        guard let cell = cell as? SpotTableViewCell else {
+            assertionFailure("Unknown cell class")
+            return
+        }
+
+        let spot = self.fetchController.object(at: indexPath)
+        cell.titleLabel?.text = spot.name
+
+        if let date = spot.lastActionDate {
+            let dateStringRepresentation = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
+            cell.subtitleLabel?.text = dateStringRepresentation
+        }
+    }
+
+}
+
+extension SpotListViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.reloadData()
+    }
 }

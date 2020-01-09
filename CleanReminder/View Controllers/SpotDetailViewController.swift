@@ -23,7 +23,8 @@ class SpotDetailViewController: UITableViewController {
 
     var spot: Spot?
     var context: NSManagedObjectContext!
-    private var currentTextFieldTitle: String { self.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "" }
+    private var currentTextFieldTitle: String { self.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+    }
     private var hasChanges: Bool {
         let nameHasChanges = self.spot?.name?.trimmingCharacters(in: .whitespacesAndNewlines) != self.currentTextFieldTitle
         let dateHasChanges = self.spot?.lastActionDate != self.datePicker.date
@@ -51,8 +52,6 @@ class SpotDetailViewController: UITableViewController {
 
         self.lastDateDetailLabel.text = string(describing: self.datePicker.date)
         self.frequencyDetailLabel.text = frequencyPicker.selectedFrequency.title
-
-        self.presentationController?.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
