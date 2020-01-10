@@ -38,49 +38,40 @@ class SpotListViewController: UITableViewController {
         return controller
     }()
 
+    private lazy var dataSource: SpotDiffableDataSource<Section, Spot> = {
+        SpotDiffableDataSource<Section, Spot>.init(tableView: self.tableView) {
+            [unowned self] (tableView, indexPath, spot) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath)
+            self.configure(cell: cell, at: indexPath)
+
+            return cell
+        }
+    }()
+
     // MARK: - UIViewController lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pefrormInitialFetch()
-        perfromInitialUIConfigure()
+        performInitialUIConfigure()
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        guard let sectionsInfo = self.fetchController.sections else {
-            assertionFailure("no sections info")
-            return 0
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.performWithoutAnimation {
+            performInitialFetch()
         }
-
-        return sectionsInfo.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sectionsInfo = self.fetchController.sections else {
-            assertionFailure("no sections info")
-            return 0
-        }
-
-        guard let sectionInfo = sectionsInfo[safe: section] else {
-            assertionFailure("Index out of range")
-            return 0
-        }
-
-        return sectionInfo.numberOfObjects
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath)
-        configure(cell: cell, at: indexPath)
-        return cell
-    }
+    // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showDetail", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -140,13 +131,13 @@ class SpotListViewController: UITableViewController {
 
     // MARK: - Private
 
-    private func pefrormInitialFetch() {
+    private func performInitialFetch() {
         self.context.tryPerform {
             try self.fetchController.performFetch()
         }
     }
 
-    private func perfromInitialUIConfigure() {
+    private func performInitialUIConfigure() {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         let cellClassName: String = .init(describing: SpotTableViewCell.self)
         let cellUINib: UINib = .init(nibName: cellClassName, bundle: nil)
@@ -171,7 +162,34 @@ class SpotListViewController: UITableViewController {
 }
 
 extension SpotListViewController: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.reloadData()
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
+        var diff = NSDiffableDataSourceSnapshot<Section, Spot>()
+        diff.appendSections([.main])
+        let spots = snapshot.itemIdentifiers.compactMap { id -> Spot? in
+            guard let objectID = id as? NSManagedObjectID else { return nil }
+            return controller.managedObjectContext.object(with: objectID) as? Spot
+        }
+
+        diff.appendItems(spots)
+
+        self.dataSource.apply(diff)
     }
 }
+
+extension SpotListViewController {
+    enum Section: CaseIterable {
+        case main
+    }
+}
+
+/**
+ This class provides an ability to use native editing for table views
+ */
+private class SpotDiffableDataSource<T: Hashable, S: Hashable>: UITableViewDiffableDataSource<T, S> {
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+}
+
