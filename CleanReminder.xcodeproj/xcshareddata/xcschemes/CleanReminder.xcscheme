@@ -38,6 +38,16 @@
                ReferencedContainer = "container:CleanReminder.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "09AE01B223C90B4000F89213"
+               BuildableName = "CleanReminderUITests.xctest"
+               BlueprintName = "CleanReminderUITests"
+               ReferencedContainer = "container:CleanReminder.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -60,6 +70,13 @@
             ReferencedContainer = "container:CleanReminder.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "DYLD_PRINT_STATISTICS"
+            value = "1"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

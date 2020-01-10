@@ -14,9 +14,7 @@ class SpotListViewController: UITableViewController {
     // MARK: - Properties
 
     private static let cellID = "spotCell"
-    private lazy var context: NSManagedObjectContext = {
-        CoreDataStack(modelName: "CleanReminder").context
-    }()
+    private let persistentContainer: CRPersistentContainer!
 
     private lazy var fetchController: NSFetchedResultsController<Spot> = {
         let fetchRequest: NSFetchRequest<Spot> = Spot.fetchRequest()
@@ -28,7 +26,7 @@ class SpotListViewController: UITableViewController {
 
         let controller: NSFetchedResultsController = .init(
             fetchRequest: fetchRequest,
-            managedObjectContext: self.context,
+            managedObjectContext: self.persistentContainer.viewContext,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
@@ -48,6 +46,23 @@ class SpotListViewController: UITableViewController {
         }
     }()
 
+    // MARK: - Initialization
+
+    init(persistentContainer: CRPersistentContainer) {
+        self.persistentContainer = persistentContainer
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init?(persistentContainer: CRPersistentContainer, coder: NSCoder) {
+        self.persistentContainer = persistentContainer
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        self.persistentContainer = nil
+        super.init(coder: coder)
+    }
+
     // MARK: - UIViewController lifecycle
 
     override func viewDidLoad() {
@@ -58,9 +73,8 @@ class SpotListViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.performWithoutAnimation {
-            performInitialFetch()
-        }
+
+        performInitialFetch()
     }
 
     // MARK: - UITableViewDelegate
@@ -73,8 +87,9 @@ class SpotListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let spot = self.fetchController.object(at: indexPath)
         let deleteAction = UIAction { action in
-            self.context.tryPerform { context in
+            self.persistentContainer.viewContext.tryPerform { context in
                 context.delete(spot)
+                try context.save()
             }
         }
 
@@ -96,7 +111,7 @@ class SpotListViewController: UITableViewController {
 
             destinationNavigationController.presentationController?.delegate = destinationViewController
             spotDetailViewController = destinationViewController
-            spotDetailViewController.context = self.context
+            spotDetailViewController.context = self.persistentContainer.viewContext
         case "showDetail":
             guard let viewController = segue.destination as? SpotDetailViewController else {
                 assertionFailure("Unexpected UI stack")
@@ -104,7 +119,7 @@ class SpotListViewController: UITableViewController {
             }
 
             spotDetailViewController = viewController
-            spotDetailViewController.context = self.context
+            spotDetailViewController.context = self.persistentContainer.viewContext
 
             guard let selectedIndexPath = self.tableView.indexPathForSelectedRow else {
                     assertionFailure("Selected cell is expected")
@@ -127,13 +142,15 @@ class SpotListViewController: UITableViewController {
         }
     }
 
-    // MARK: - Private
-
-    private func performInitialFetch() {
-        self.context.tryPerform { _ in
-            try self.fetchController.performFetch()
+    func performInitialFetch() {
+        UIView.performWithoutAnimation {
+            self.persistentContainer.viewContext.tryPerform { _ in
+                try self.fetchController.performFetch()
+            }
         }
     }
+
+    // MARK: - Private
 
     private func performInitialUIConfigure() {
         let cellClassName: String = .init(describing: SpotTableViewCell.self)

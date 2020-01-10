@@ -9,7 +9,7 @@
         <!--Spots-->
         <scene sceneID="bd3-R7-5SD">
             <objects>
-                <tableViewController id="Qnk-If-kcr" customClass="SpotListViewController" customModule="CleanReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SpotListViewController" id="Qnk-If-kcr" customClass="SpotListViewController" customModule="CleanReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qqW-1c-RlJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

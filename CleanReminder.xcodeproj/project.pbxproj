@@ -16,18 +16,30 @@
 		095C5E1F23BD3FCD00C59435 /* CleanReminderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E1E23BD3FCD00C59435 /* CleanReminderTests.swift */; };
 		095C5E2A23BD43E000C59435 /* SpotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2923BD43E000C59435 /* SpotListViewController.swift */; };
 		095C5E2C23BD487F00C59435 /* SpotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2B23BD487F00C59435 /* SpotDetailViewController.swift */; };
-		095C5E2E23BD499100C59435 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2D23BD499100C59435 /* CoreDataStack.swift */; };
 		095C5E3123BD4B0F00C59435 /* CleanReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */; };
 		096F34DE23BE716A00FDC923 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096F34DD23BE716A00FDC923 /* Frequency.swift */; };
+		099AC35C23C9D4D00037FD4E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AC35B23C9D4D00037FD4E /* Logger.swift */; };
+		09AE01AA23C906FD00F89213 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE01A923C906FD00F89213 /* RootViewController.swift */; };
+		09AE01B623C90B4000F89213 /* CleanReminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE01B523C90B4000F89213 /* CleanReminderUITests.swift */; };
+		09AE01BE23C9CFC500F89213 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE01BD23C9CFC500F89213 /* UIViewController+Extensions.swift */; };
 		09BBC44B23C12F8B00D1EFA7 /* Spot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */; };
 		09DF07A723C3C5ED00131A3C /* SpotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */; };
 		09DF07A823C3C5ED00131A3C /* SpotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */; };
+		09DF07B223C8E36800131A3C /* CRPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DF07B123C8E36800131A3C /* CRPersistentContainer.swift */; };
+		09DF07B423C8FD8700131A3C /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DF07B323C8FD8700131A3C /* AppModel.swift */; };
 		B16C271323C4DF440029DDE6 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16C271223C4DF440029DDE6 /* Collection+Extensions.swift */; };
 		B16C271523C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16C271423C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		095C5E1B23BD3FCD00C59435 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 095C5DFC23BD3FCB00C59435 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 095C5E0323BD3FCB00C59435;
+			remoteInfo = CleanReminder;
+		};
+		09AE01B823C90B4000F89213 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 095C5DFC23BD3FCB00C59435 /* Project object */;
 			proxyType = 1;
@@ -50,13 +62,20 @@
 		095C5E2023BD3FCD00C59435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		095C5E2923BD43E000C59435 /* SpotListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListViewController.swift; sourceTree = "<group>"; };
 		095C5E2B23BD487F00C59435 /* SpotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailViewController.swift; sourceTree = "<group>"; };
-		095C5E2D23BD499100C59435 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		095C5E3023BD4B0F00C59435 /* CleanReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CleanReminder.xcdatamodel; sourceTree = "<group>"; };
 		096F34DD23BE716A00FDC923 /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
+		099AC35B23C9D4D00037FD4E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		09AE01A923C906FD00F89213 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		09AE01B323C90B4000F89213 /* CleanReminderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanReminderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09AE01B523C90B4000F89213 /* CleanReminderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanReminderUITests.swift; sourceTree = "<group>"; };
+		09AE01B723C90B4000F89213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09AE01BD23C9CFC500F89213 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataClass.swift"; sourceTree = "<group>"; };
 		09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotTableViewCell.swift; sourceTree = "<group>"; };
 		09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotTableViewCell.xib; sourceTree = "<group>"; };
 		09DF07B023C8E25800131A3C /* CleanReminderTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CleanReminderTests.xctestplan; sourceTree = "<group>"; };
+		09DF07B123C8E36800131A3C /* CRPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRPersistentContainer.swift; sourceTree = "<group>"; };
+		09DF07B323C8FD8700131A3C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		B16C271223C4DF440029DDE6 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		B16C271423C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +95,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		09AE01B023C90B4000F89213 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -84,6 +110,7 @@
 			children = (
 				095C5E0623BD3FCB00C59435 /* CleanReminder */,
 				095C5E1D23BD3FCD00C59435 /* CleanReminderTests */,
+				09AE01B423C90B4000F89213 /* CleanReminderUITests */,
 				095C5E0523BD3FCB00C59435 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,6 +120,7 @@
 			children = (
 				095C5E0423BD3FCB00C59435 /* CleanReminder.app */,
 				095C5E1A23BD3FCD00C59435 /* CleanReminderTests.xctest */,
+				09AE01B323C90B4000F89213 /* CleanReminderUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,12 +128,14 @@
 		095C5E0623BD3FCB00C59435 /* CleanReminder */ = {
 			isa = PBXGroup;
 			children = (
+				09DF07B523C9059500131A3C /* Core */,
 				B16C271723C4E06C0029DDE6 /* Core Data */,
 				B16C271823C4E0880029DDE6 /* View Controllers */,
 				B16C271623C4E03A0029DDE6 /* Supporting Files */,
 				B16C271923C4E0A50029DDE6 /* Views */,
 				096F34DD23BE716A00FDC923 /* Frequency.swift */,
 				B16C271223C4DF440029DDE6 /* Collection+Extensions.swift */,
+				09AE01BD23C9CFC500F89213 /* UIViewController+Extensions.swift */,
 			);
 			path = CleanReminder;
 			sourceTree = "<group>";
@@ -120,11 +150,29 @@
 			path = CleanReminderTests;
 			sourceTree = "<group>";
 		};
+		09AE01B423C90B4000F89213 /* CleanReminderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				09AE01B523C90B4000F89213 /* CleanReminderUITests.swift */,
+				09AE01B723C90B4000F89213 /* Info.plist */,
+			);
+			path = CleanReminderUITests;
+			sourceTree = "<group>";
+		};
+		09DF07B523C9059500131A3C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				09DF07B323C8FD8700131A3C /* AppModel.swift */,
+				095C5E0723BD3FCB00C59435 /* AppDelegate.swift */,
+				095C5E0923BD3FCB00C59435 /* SceneDelegate.swift */,
+				099AC35B23C9D4D00037FD4E /* Logger.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		B16C271623C4E03A0029DDE6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				095C5E0723BD3FCB00C59435 /* AppDelegate.swift */,
-				095C5E0923BD3FCB00C59435 /* SceneDelegate.swift */,
 				095C5E1023BD3FCC00C59435 /* Assets.xcassets */,
 				095C5E1223BD3FCC00C59435 /* LaunchScreen.storyboard */,
 				095C5E1523BD3FCC00C59435 /* Info.plist */,
@@ -135,9 +183,9 @@
 		B16C271723C4E06C0029DDE6 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				09DF07B123C8E36800131A3C /* CRPersistentContainer.swift */,
 				095C5E2F23BD4B0F00C59435 /* CleanReminder.xcdatamodeld */,
 				09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */,
-				095C5E2D23BD499100C59435 /* CoreDataStack.swift */,
 				B16C271423C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift */,
 			);
 			path = "Core Data";
@@ -146,6 +194,7 @@
 		B16C271823C4E0880029DDE6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				09AE01A923C906FD00F89213 /* RootViewController.swift */,
 				095C5E2923BD43E000C59435 /* SpotListViewController.swift */,
 				095C5E2B23BD487F00C59435 /* SpotDetailViewController.swift */,
 				095C5E0D23BD3FCB00C59435 /* Main.storyboard */,
@@ -201,6 +250,24 @@
 			productReference = 095C5E1A23BD3FCD00C59435 /* CleanReminderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		09AE01B223C90B4000F89213 /* CleanReminderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09AE01BA23C90B4000F89213 /* Build configuration list for PBXNativeTarget "CleanReminderUITests" */;
+			buildPhases = (
+				09AE01AF23C90B4000F89213 /* Sources */,
+				09AE01B023C90B4000F89213 /* Frameworks */,
+				09AE01B123C90B4000F89213 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09AE01B923C90B4000F89213 /* PBXTargetDependency */,
+			);
+			name = CleanReminderUITests;
+			productName = CleanReminderUITests;
+			productReference = 09AE01B323C90B4000F89213 /* CleanReminderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -215,6 +282,10 @@
 						CreatedOnToolsVersion = 11.3;
 					};
 					095C5E1923BD3FCD00C59435 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 095C5E0323BD3FCB00C59435;
+					};
+					09AE01B223C90B4000F89213 = {
 						CreatedOnToolsVersion = 11.3;
 						TestTargetID = 095C5E0323BD3FCB00C59435;
 					};
@@ -235,6 +306,7 @@
 			targets = (
 				095C5E0323BD3FCB00C59435 /* CleanReminder */,
 				095C5E1923BD3FCD00C59435 /* CleanReminderTests */,
+				09AE01B223C90B4000F89213 /* CleanReminderUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,6 +330,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		09AE01B123C90B4000F89213 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -265,12 +344,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				095C5E2E23BD499100C59435 /* CoreDataStack.swift in Sources */,
 				095C5E0823BD3FCB00C59435 /* AppDelegate.swift in Sources */,
 				095C5E2C23BD487F00C59435 /* SpotDetailViewController.swift in Sources */,
 				B16C271323C4DF440029DDE6 /* Collection+Extensions.swift in Sources */,
 				09DF07A723C3C5ED00131A3C /* SpotTableViewCell.swift in Sources */,
+				09AE01AA23C906FD00F89213 /* RootViewController.swift in Sources */,
+				09DF07B223C8E36800131A3C /* CRPersistentContainer.swift in Sources */,
 				096F34DE23BE716A00FDC923 /* Frequency.swift in Sources */,
+				099AC35C23C9D4D00037FD4E /* Logger.swift in Sources */,
+				09AE01BE23C9CFC500F89213 /* UIViewController+Extensions.swift in Sources */,
+				09DF07B423C8FD8700131A3C /* AppModel.swift in Sources */,
 				092FEE4923C1378D00060CCE /* FrequencyPicker.swift in Sources */,
 				095C5E2A23BD43E000C59435 /* SpotListViewController.swift in Sources */,
 				09BBC44B23C12F8B00D1EFA7 /* Spot+CoreDataClass.swift in Sources */,
@@ -288,6 +371,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		09AE01AF23C90B4000F89213 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09AE01B623C90B4000F89213 /* CleanReminderUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -295,6 +386,11 @@
 			isa = PBXTargetDependency;
 			target = 095C5E0323BD3FCB00C59435 /* CleanReminder */;
 			targetProxy = 095C5E1B23BD3FCD00C59435 /* PBXContainerItemProxy */;
+		};
+		09AE01B923C90B4000F89213 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 095C5E0323BD3FCB00C59435 /* CleanReminder */;
+			targetProxy = 09AE01B823C90B4000F89213 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -512,6 +608,44 @@
 			};
 			name = Release;
 		};
+		09AE01BB23C90B4000F89213 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NFA8F38A32;
+				INFOPLIST_FILE = CleanReminderUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shiaulis.CleanReminderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CleanReminder;
+			};
+			name = Debug;
+		};
+		09AE01BC23C90B4000F89213 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NFA8F38A32;
+				INFOPLIST_FILE = CleanReminderUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shiaulis.CleanReminderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CleanReminder;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -538,6 +672,15 @@
 			buildConfigurations = (
 				095C5E2723BD3FCD00C59435 /* Debug */,
 				095C5E2823BD3FCD00C59435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09AE01BA23C90B4000F89213 /* Build configuration list for PBXNativeTarget "CleanReminderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09AE01BB23C90B4000F89213 /* Debug */,
+				09AE01BC23C90B4000F89213 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
