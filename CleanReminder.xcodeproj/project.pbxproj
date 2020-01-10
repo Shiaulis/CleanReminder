@@ -56,6 +56,7 @@
 		09BBC44923C12F8B00D1EFA7 /* Spot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spot+CoreDataClass.swift"; sourceTree = "<group>"; };
 		09DF07A523C3C5ED00131A3C /* SpotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotTableViewCell.swift; sourceTree = "<group>"; };
 		09DF07A623C3C5ED00131A3C /* SpotTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotTableViewCell.xib; sourceTree = "<group>"; };
+		09DF07B023C8E25800131A3C /* CleanReminderTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CleanReminderTests.xctestplan; sourceTree = "<group>"; };
 		B16C271223C4DF440029DDE6 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		B16C271423C4DF6A0029DDE6 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				095C5E1E23BD3FCD00C59435 /* CleanReminderTests.swift */,
+				09DF07B023C8E25800131A3C /* CleanReminderTests.xctestplan */,
 				095C5E2023BD3FCD00C59435 /* Info.plist */,
 			);
 			path = CleanReminderTests;

@@ -1,0 +1,34 @@
+{
+  "configurations" : [
+    {
+      "id" : "993A08CE-D67C-484E-BBA1-7573089E7926",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:CleanReminder.xcodeproj",
+          "identifier" : "095C5E0323BD3FCB00C59435",
+          "name" : "CleanReminder"
+        }
+      ]
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CleanReminder.xcodeproj",
+        "identifier" : "095C5E1923BD3FCD00C59435",
+        "name" : "CleanReminderTests"
+      }
+    }
+  ],
+  "version" : 1
+}
