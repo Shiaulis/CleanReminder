@@ -10,10 +10,10 @@ import CoreData
 
 extension NSManagedObjectContext {
 
-    func tryPerform(action: @escaping () throws -> Void) {
+    func tryPerform(action: @escaping (NSManagedObjectContext) throws -> Void) {
         self.performAndWait {
             do {
-                try action()
+                try action(self)
             }
             catch let error as NSError {
                 assertionFailure("Error catched: \(error), \(error.userInfo)")

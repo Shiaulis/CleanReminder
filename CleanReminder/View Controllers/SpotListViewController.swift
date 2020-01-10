@@ -13,7 +13,7 @@ class SpotListViewController: UITableViewController {
 
     // MARK: - Properties
 
-    private let cellID = "spotCell"
+    private static let cellID = "spotCell"
     private lazy var context: NSManagedObjectContext = {
         CoreDataStack(modelName: "CleanReminder").context
     }()
@@ -38,11 +38,11 @@ class SpotListViewController: UITableViewController {
         return controller
     }()
 
-    private lazy var dataSource: SpotDiffableDataSource<Section, Spot> = {
-        SpotDiffableDataSource<Section, Spot>.init(tableView: self.tableView) {
-            [unowned self] (tableView, indexPath, spot) -> UITableViewCell? in
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath)
-            self.configure(cell: cell, at: indexPath)
+    private lazy var dataSource: UITableViewDiffableDataSource<Section, Spot> = {
+        UITableViewDiffableDataSource<Section, Spot>.init(tableView: self.tableView) {
+            [weak self] (tableView, indexPath, spot) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: SpotListViewController.cellID, for: indexPath)
+            self?.configure(cell: cell, at: indexPath)
 
             return cell
         }
@@ -70,17 +70,15 @@ class SpotListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let spot = self.fetchController.object(at: indexPath)
+        let deleteAction = UIAction { action in
+            self.context.tryPerform { context in
+                context.delete(spot)
+            }
+        }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // FIXME: apply object deletion
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        return .init(actions: [deleteAction])
     }
 
     // MARK: - Navigation
@@ -132,16 +130,15 @@ class SpotListViewController: UITableViewController {
     // MARK: - Private
 
     private func performInitialFetch() {
-        self.context.tryPerform {
+        self.context.tryPerform { _ in
             try self.fetchController.performFetch()
         }
     }
 
     private func performInitialUIConfigure() {
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
         let cellClassName: String = .init(describing: SpotTableViewCell.self)
         let cellUINib: UINib = .init(nibName: cellClassName, bundle: nil)
-        self.tableView.register(cellUINib, forCellReuseIdentifier: self.cellID)
+        self.tableView.register(cellUINib, forCellReuseIdentifier: SpotListViewController.cellID)
     }
 
     private func configure(cell: UITableViewCell, at indexPath: IndexPath) {
@@ -183,13 +180,20 @@ extension SpotListViewController {
     }
 }
 
-/**
- This class provides an ability to use native editing for table views
- */
-private class SpotDiffableDataSource<T: Hashable, S: Hashable>: UITableViewDiffableDataSource<T, S> {
-
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+extension UIAction {
+    convenience init(handler: @escaping (UIAction) -> Void) {
+        self.init(
+            title: "Delete",
+            image: UIImage(systemName: "trash"),
+            attributes: .destructive,
+            handler: handler)
     }
 }
 
+extension UIContextMenuConfiguration {
+    convenience init(actions: [UIAction]) {
+        self.init(identifier: nil, previewProvider: nil) { suggestedMenuElements in
+            .init(title: "", children: actions)
+        }
+    }
+}

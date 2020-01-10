@@ -99,8 +99,8 @@ class SpotDetailViewController: UITableViewController {
         spot.lastActionDate = self.datePicker.date
         spot.frequency = self.frequencyPicker.selectedFrequency
 
-        self.context.tryPerform {
-            try self.context.save()
+        self.context.tryPerform { context in
+            try context.save()
         }
     }
 
